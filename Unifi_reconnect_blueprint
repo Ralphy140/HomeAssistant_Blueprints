@@ -1,0 +1,45 @@
+blueprint:
+  name: Monitor Network conectivity
+  description: This will limit the export of your solaredge solar system if you are using Amber and have negative FiT, You must have the SolarEdge consumption monitor and installed and configured this package from HACS fist "https://github.com/binsentsu/home-assistant-solaredge-modbus"
+  domain: automation
+  input:
+    uptime_device:
+      name: Uptime Device Tracker
+      description: The Uptime Kume device tracker that will detect when a device is no online
+      selector:
+        entity:
+          integration: uptime_kuma
+          domain:
+            - binary_sensor
+          multiple: false
+    unifi_device:
+      name: Unifi Device Tracker
+      description: The Wifi device you want unifi to reconnect
+      selector:
+        device:
+          integration: unifi
+          multiple: false
+    off_line_time:
+      name: Off line time
+      description: This lets you control how long a device is off line before a reconnection attemp
+      default: 2
+      selector:
+        number:
+          min: 0
+          max: 30
+          mode: slider
+          step: 1
+  source_url: https://github.com/Ralphy140/Amber/blob/main/unifi_reconnect.yaml
+trigger:
+  - platform: state
+    entity_id: !input uptime_device
+    for:
+      hours: 0
+      minutes: !input off_line_time
+    from: "on"
+    to: "off"
+
+action:
+  - data:
+      device_id: !input unifi_device
+    action: unifi.reconnect_client
