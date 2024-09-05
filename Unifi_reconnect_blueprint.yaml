@@ -1,6 +1,6 @@
 blueprint:
   name: Monitor Network conectivity
-  description: This will limit the export of your solaredge solar system if you are using Amber and have negative FiT, You must have the SolarEdge consumption monitor and installed and configured this package from HACS fist "https://github.com/binsentsu/home-assistant-solaredge-modbus"
+  description: Monitor and reconnect wifi devices using uptime Kuma and Unifi
   domain: automation
   input:
     uptime_device:
