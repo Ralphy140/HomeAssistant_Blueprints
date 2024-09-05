@@ -29,7 +29,7 @@ blueprint:
           max: 30
           mode: slider
           step: 1
-  source_url: https://github.com/Ralphy140/Amber/blob/main/unifi_reconnect.yaml
+  source_url: https://github.com/Ralphy140/HomeAssistant_Blueprints/blob/main/Unifi_reconnect_blueprint.yaml
 trigger:
   - platform: state
     entity_id: !input uptime_device
