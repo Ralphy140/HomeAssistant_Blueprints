@@ -10,7 +10,7 @@ blueprint:
         entity:
           integration: uptime_kuma
           domain:
-            - binary_sensor
+            - sensor
           multiple: false
     unifi_device:
       name: Unifi Device Tracker
